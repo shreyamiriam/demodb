@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>
+    <form action="display">
+        <table border="1">
+            <tr>
+                <th>ID</th><th>Name</th><th>Address</th>
+            </tr>
+            {% for i in emp %}
+            <tr>
+                <td>{{i.id}}</td>
+                <td>{{i.name}}</td>
+                <td>{{i.address}}</td>
+            </tr>
+            {% endfor %}
+        </table> <br>
+        <input type="submit" value="display"><br>
+    </form>
+</div>
+<br><br>
+<div>
+    <form action="add" method="post">
+        {% csrf_token %}
+        Name:<input type="text" name="name"><br>
+        Address:<input type="text" name="address"><br>
+        <input type="submit" value="Add Employee"><br>
+        <p>{{msg}}</p>
+    </form>
+</div>
+<br><br>
+<div>
+    <form action="del" method="post">
+        {% csrf_token %}
+        Name to delete:<input type="text" name="name"><br>
+        <input type="submit" value="delete "><br>
+        {{msg1}}
+    </form>
+</div>
+{% endblock %}
